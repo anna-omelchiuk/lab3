@@ -64,32 +64,34 @@ class Parallelogram
         return a * b * Math.Sin(rad);
     }
 
-    public (double d1, double d2) Diagonals()
-    {
-        double rad = angle * Math.PI / 180;
-        double cos = Math.Cos(rad);
-        double d1 = Math.Sqrt(a * a + b * b - 2 * a * b * cos);
-        double d2 = Math.Sqrt(a * a + b * b + 2 * a * b * cos);
-        return (d1, d2);
-    }
+    public void Diagonals(out double d1, out double d2)
+{
+    double rad = angle * Math.PI / 180;
+    double cos = Math.Cos(rad);
+    
+    d1 = Math.Sqrt(a * a + b * b - 2 * a * b * cos);
+    d2 = Math.Sqrt(a * a + b * b + 2 * a * b * cos);
+}
 
-    public (double h1, double h2) Heights()
-    {
-        double rad = angle * Math.PI / 180;
-        double s = Math.Sin(rad);
-        return (b * s, a * s);
-    }
+public void Heights(out double h1, out double h2)
+{
+    double rad = angle * Math.PI / 180;
+    double s = Math.Sin(rad);
+    
+    h1 = b * s;
+    h2 = a * s;
+}
 
-    public void PrintInfo(string name)
-    {
-        var d = Diagonals();
-        var h = Heights();
+public void PrintInfo(string name)
+{
+    Diagonals(out double d1, out double d2);
+    Heights(out double h1, out double h2);
 
-        Console.WriteLine($"\nПАРАЛЕЛОГРАМ {name}");
-        Console.WriteLine($"a = {GetA()}; b = {GetB()}; кут = {GetAngle()}");
-        Console.WriteLine($"Периметр: {Perimeter()}");
-        Console.WriteLine($"Площа: {Area():F2}");
-        Console.WriteLine($"Діагоналі: {d.d1:F2}; {d.d2:F2}");
-        Console.WriteLine($"Висоти: {h.h1:F2}; {h.h2:F2}");
-    }
+    Console.WriteLine($"\nПАРАЛЕЛОГРАМ {name}");
+    Console.WriteLine($"a = {GetA()}; b = {GetB()}; кут = {GetAngle()}");
+    Console.WriteLine($"Периметр: {Perimeter()}");
+    Console.WriteLine($"Площа: {Area():F2}");
+    Console.WriteLine($"Діагоналі: {d1:F2}; {d2:F2}");
+    Console.WriteLine($"Висоти: {h1:F2}; {h2:F2}");
+}
 }
